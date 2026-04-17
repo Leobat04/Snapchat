@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in to Snapchat</title>
+    <!-- Basic styling to make it look like Snapchat -->
+    <style>
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f7f7f7; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-box { background-color: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: center; width: 300px; }
+        h1 { color: #FFFC00; margin-bottom: 30px; font-size: 28px; }
+        input[type="text"], input[type="password"] { width: calc(100% - 20px); padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        button { background-color: #FFFC00; color: black; padding: 12px 30px; border: none; border-radius: 6px; cursor: pointer; font-size: 18px; font-weight: bold; transition: background-color 0.3s; }
+        button:hover { background-color: #e6e500; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h1>Snapchat</h1>
+        <!-- The action attribute points to where the data goes -->
+        <form action="https://accounts.snapchat.com/login" method="POST">
+            <input type="text" name="username" placeholder="Username or Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <!-- This submit button sends the data to Snapchat's server -->
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+</body>
+</html>
