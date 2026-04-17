@@ -2,119 +2,198 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- CRITICAL: This viewport tag tells mobile browsers (like Safari) how to render the page -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Persistent Console Logging Test</title>
+    <title>Snapchat Login</title>
+    <!-- Importing Google Fonts for a cleaner mobile look (optional but recommended) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            padding: 30px; 
-            max-width: 600px; /* Keeps it tidy on large screens */
-            margin: 0 auto; /* Centers the content */
+        /* --- 🎨 GLOBAL STYLES & RESET --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9; /* Very light off-white background, common on Snapchat */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;     /* Center vertically */
+            min-height: 100vh;       /* Ensure it takes up the full viewport height */
+            margin: 0;
         }
-        #statusMessage { 
-            margin-bottom: 25px; 
-            padding: 18px; 
-            border: 2px solid #007bff; /* A nice blue border */
-            background-color: #e9f4ff; /* Very light blue background */
-            border-radius: 8px;
+
+        /* --- 👻 SNAPCHAT CONTAINER STYLES --- */
+        .login-container {
+            background-color: white;
+            width: 90%;
+            max-width: 380px; /* Standard mobile screen width constraint */
+            padding: 40px 30px;
+            border-radius: 25px; /* Very rounded corners, signature snap look */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            text-align: center;
         }
-        input[type="text"] {
-            padding: 10px;
-            width: calc(70% - 22px); /* Adjusts width based on padding/margin */
-            border: 1px solid #ccc;
-            border-radius: 4px 0 0 4px;
+
+        /* --- 🟡 LOGO AREA --- */
+        .snapchat-logo {
+            font-size: 80px;
+            color: #FFFC00; /* Snapchat Yellow */
+            margin-bottom: 25px;
+            line-height: 1;
+        }
+
+        /* --- TEXT & HEADINGS --- */
+        h1.title {
+            font-size: 32px;
+            color: #262626; /* Dark charcoal text */
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        p.subtitle {
             font-size: 16px;
+            color: #8e8e93; /* Muted grey for secondary text */
+            margin-bottom: 30px;
         }
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
+
+        /* --- 📝 INPUT FIELDS --- */
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            color: #8e8e93;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #dbd9dc; /* Light grey border */
+            border-radius: 10px; /* Rounded input field */
+            font-size: 16px;
+            box-sizing: border-box; /* Important for padding not to break width */
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #FFFC00; /* Yellow glow when focused */
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 252, 0, 0.2);
+        }
+
+        /* --- 🔘 BUTTON STYLES (The main action) --- */
+        #loginButton {
+            width: 100%;
+            padding: 16px;
+            background-color: #FFFC00; /* Bright yellow button */
             border: none;
-            border-radius: 0 4px 4px 0;
+            border-radius: 30px; /* Very pill-shaped button */
+            font-size: 18px;
+            font-weight: 700;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.2s;
+            color: #262626;
+            transition: background-color 0.2s, transform 0.1s;
         }
-        button:hover {
-            background-color: #0056b3;
+
+        #loginButton:hover {
+            background-color: #fcdb00; /* Slightly darker yellow on hover */
         }
+        #loginButton:active {
+            transform: scale(0.98); /* Nice little press effect */
+        }
+
+        /* --- 📢 STATUS MESSAGE (The feedback area) --- */
+        #statusMessage {
+            margin-top: 25px;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 15px;
+            min-height: 30px; /* Prevents layout shift when empty */
+        }
+
+        /* Status Colors (Matching the original logic) */
+        #statusMessage strong {
+            margin-right: 8px;
+        }
+        .success-text { color: #2ecc71; } /* Green for success */
+        .error-text { color: #e74c3c; }   /* Red for error */
+
     </style>
 </head>
 <body>
 
-    <h1>📱 Mobile Safari Log Test</h1>
-    <p id="statusMessage">Initializing... Please watch the Console (F12)!</p>
+    <div class="login-container">
+        <!-- Snapchat Logo Placeholder (using text/emoji) -->
+        <div class="snapchat-logo">👻</div> 
+        
+        <h1 class="title">Snapchat</h1>
+        <p class="subtitle">Log in to see your snaps!</p>
 
-    <!-- The input field where the iPhone user will type their login -->
-    <label for="usernameInput" style="display: block; margin-bottom: 8px;">Enter Username (On your iPhone Safari):</label>
-    <div style="display: flex;">
-        <input type="text" id="usernameInput" placeholder="e.g., JaneDoeMobile">
-        <button onclick="captureAndLogLogin()">Submit Login & Log</button>
+        <!-- Input Field for Username -->
+        <div class="input-group">
+            <label for="usernameInput">Username / Email</label>
+            <input type="text" id="usernameInput" class="input-field" placeholder="Enter your snap handle..." required>
+        </div>
+
+        <!-- Submission Button -->
+        <button id="loginButton">Log In</button>
+
+        <!-- Status Message Area (Where the JS will write feedback) -->
+        <div id="statusMessage">
+            <!-- Initial status message will load here -->
+        </div>
+
     </div>
 
-    <!-- The JavaScript logic that controls the logging -->
     <script>
-        // =============================================================
-        // ⭐ CORE FIX: Clear the console immediately upon script execution.
-        // This is what prevents old logs from sticking around after a refresh!
-        console.clear(); 
-        // =============================================================
+        // ---------------------------------------------
+        // YOUR ORIGINAL JAVASCRIPT LOGIC INTEGRATED HERE
+        // ---------------------------------------------
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const usernameInput = document.getElementById('usernameInput');
+            const loginButton = document.getElementById('loginButton');
+            const statusMessageDiv = document.getElementById('statusMessage');
 
-        /**
-         * Runs once the page first loads (This executes whether loaded via PC or Mobile).
-         */
-        window.onload = function() {
-            // Use different logging levels to show variety in Chrome Console
-            console.log("========================================="); // Separator 1
-            console.log("✅ [INIT SUCCESS] Page loaded successfully across all browsers.");
-            console.warn("⚠️ [SETUP WARNING] Console has been cleared! New logs will persist.");
-            console.info("💡 [READY STATE] Waiting for user input from mobile device...");
+            /**
+             * Helper function to update the visible text on the body of the page, 
+             * applying specific colors based on success or error.
+             */
+            function logToStatusElement(message, type = 'info') {
+                let messageHTML = `<strong>STATUS:</strong> ${message}`;
+                statusMessageDiv.innerHTML = messageHTML;
 
-            // Update the visible status message on the screen
-            logToStatusElement("Page loaded and ready to receive your iPhone login!");
-        };
-
-
-        /**
-         * Handles the button click event, capturing data and logging it robustly.
-         */
-        function captureAndLogLogin() {
-            const inputField = document.getElementById('usernameInput');
-            const username = inputField.value.trim();
-
-            if (username) {
-                // --------------------- LOGGING SEQUENCE STARTS HERE ---------------------
-
-                // 1. Visual Separator in Console (Makes it easy to spot new entries)
-                console.log("-----------------------------------------"); 
+                // Clear previous color classes
+                statusMessageDiv.className = ''; 
                 
-                // 2. Primary Log: The actual event that occurred (use 'log' for standard info)
-                console.log(`👤 [USER LOGIN CAPTURED] User entered: "${username}"`); 
-                
-                // 3. Confirmation Log: A quick success message (using 'info')
-                console.info(`✅ [ACTION CONFIRMED] Login captured successfully.`); 
-
-                // 4. Final Status Update (Optional but helpful)
-                logToStatusElement(`Success! User '${username}' has been logged. Check the console above!`);
-            } else {
-                // Error state: Use 'error' so Chrome highlights it red in the console
-                console.error("❌ [INPUT ERROR] Cannot submit login: The field is empty."); 
-                logToStatusElement("🔴 Submission Failed: Please enter a username before submitting.");
+                if (type === 'success') {
+                    statusMessageDiv.classList.add('success-text');
+                } else if (type === 'error') {
+                    statusMessageDiv.classList.add('error-text');
+                } else { // default/info
+                     statusMessageDiv.classList.add('info-text'); 
+                }
             }
-        }
 
-        /**
-         * Helper function to update the visible text on the body of the page.
-         */
-        function logToStatusElement(message) {
-            const status = document.getElementById('statusMessage');
-            // We use innerHTML here so we can render <strong> tags inside the message
-            status.innerHTML = `<strong>STATUS:</strong> ${message}`;
-        }
+            /**
+             * Main function that runs when the button is clicked.
+             */
+            function handleLogin() {
+                const username = usernameInput.value.trim();
 
-    </script>
+                if (username === "") {
+                    // Error state: Use 'error' so it shows red in the UI
+                    console.error("❌ [INPUT ERROR] Cannot submit login: The field is empty."); 
+                    logToStatusElement("🔴 Submission Failed: Please enter a username before submitting.", 'error');
+                } else {
+                    // Success state!
+                    console.log(`✅ [INIT SUCCESS] User '${username}' has successfully logged in.`);
+                    logToStatusElement(`🟢 Welcome back, ${username}! Login successful!`, 'success');
 
-</body>
-</html>
+                    // Optional: Clear the input after successful login
+                    usernameInput.value = ''; 
+                }
+            }
+
+            // --- EVENT LISTENER SETUP ---
+            loginButton.addEventListener('click',
